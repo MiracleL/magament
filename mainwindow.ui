@@ -67,6 +67,16 @@
          <string>Cloth</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Cloth2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Cloth3</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>
@@ -343,7 +353,7 @@ p, li { white-space: pre-wrap; }
       <x>640</x>
       <y>50</y>
       <width>301</width>
-      <height>51</height>
+      <height>73</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_4">

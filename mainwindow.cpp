@@ -33,7 +33,7 @@ void MainWindow::on_ADD_clicked()
     if(s=="Food")
     {
         int i=0;
-        link<string> *temp=food.head;
+        link<string> *temp=food.head->next;
         for(i=0;i<food.cnt;i++)
         {
             if(item.toStdString()==temp->element)
@@ -49,8 +49,8 @@ void MainWindow::on_ADD_clicked()
     else if(s=="Vegetable")
     {
         int i=0;
-        link<string> *temp=food.head;
-        for(i=0;i<food.cnt;i++)
+        link<string> *temp=vege.head->next;
+        for(i=0;i<vege.cnt;i++)
         {
             if(item.toStdString()==temp->element)
             {
@@ -59,14 +59,14 @@ void MainWindow::on_ADD_clicked()
             }
             temp=temp->next;
         }
-        if(i==food.cnt)
+        if(i==vege.cnt)
         vege.append(item.toStdString(),number,s.toStdString());
     }
     else if(s=="Cloth")
     {
         int i=0;
-        link<string> *temp=food.head->next;
-        for(i=0;i<food.cnt;i++)
+        link<string> *temp=cloth.head->next;
+        for(i=0;i<cloth.cnt;i++)
         {
             if(item.toStdString()==temp->element)
             {
@@ -75,7 +75,7 @@ void MainWindow::on_ADD_clicked()
             }
             temp=temp->next;
         }
-        if(i==food.cnt)
+        if(i==cloth.cnt)
         cloth.append(item.toStdString(),number,s.toStdString());
     }
     ui->textBrowser_4->setText("The data is already saved");

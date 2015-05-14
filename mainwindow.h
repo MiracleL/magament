@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-     linklist<string> food,vege,cloth;
+     linklist<string> food,vege,cloth,cloth2,cloth3;
      queue<string> good,good1;
 
 private slots:
