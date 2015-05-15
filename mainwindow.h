@@ -3,6 +3,7 @@
 #include"linklist.h"
 #include"queue.h"
 #include"string.h"
+
 using namespace std;
 #include <QMainWindow>
 
@@ -21,6 +22,10 @@ public:
      queue<string> good,good1;
 
 private slots:
+
+    void display_f(link<string> *temp,linklist<string> &cloth2);
+    void display_co(linklist<string> &cloth1);
+
     void on_ADD_clicked();
 
     void on_Display_clicked();

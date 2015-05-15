@@ -6,6 +6,7 @@
 #include"string"
 #include<iostream>
 #include<QMessageBox>
+#include"hanshu.h"
 
 using namespace std;
 
@@ -32,98 +33,70 @@ void MainWindow::on_ADD_clicked()
     number=ui->spinBox_number->value();
     if(s=="Food")
     {
-        int i=0;
-        link<string> *temp=food.head->next;
-        for(i=0;i<food.cnt;i++)
-        {
-            if(item.toStdString()==temp->element)
-            {
-                temp->number+=number;
-                break;
-            }
-            temp=temp->next;
-        }
-        if(i==food.cnt)
-        food.append(item.toStdString(),number,s.toStdString());
+        add_clicked(food,s,item,number);
     }
     else if(s=="Vegetable")
     {
-        int i=0;
-        link<string> *temp=vege.head->next;
-        for(i=0;i<vege.cnt;i++)
-        {
-            if(item.toStdString()==temp->element)
-            {
-                temp->number+=number;
-                break;
-            }
-            temp=temp->next;
-        }
-        if(i==vege.cnt)
-        vege.append(item.toStdString(),number,s.toStdString());
+        add_clicked(vege,s,item,number);
     }
     else if(s=="Cloth")
     {
-        int i=0;
-        link<string> *temp=cloth.head->next;
-        for(i=0;i<cloth.cnt;i++)
-        {
-            if(item.toStdString()==temp->element)
-            {
-                temp->number+=number;
-                break;
-            }
-            temp=temp->next;
-        }
-        if(i==cloth.cnt)
-        cloth.append(item.toStdString(),number,s.toStdString());
+        add_clicked(cloth,s,item,number);
     }
+    else if(s=="Cloth2")
+    {
+       add_clicked(cloth2,s,item,number);
+    }
+    else if(s=="Cloth3")
+    {
+        add_clicked(cloth3,s,item,number);
+    }
+
+
     ui->textBrowser_4->setText("The data is already saved");
     ui->textEdit_name->clear();
     ui->spinBox_number->clear();
     ui->textBrowser_1->clear();
 }
 
+void MainWindow::display_f(link<string> *temp,linklist<string> &cloth2)
+{
+    for(int i=0;i<cloth2.cnt;i++)
+    {
+         ui->textBrowser_1->append(QString::fromStdString(temp->category));
+         ui->textBrowser_1->append(QString::fromStdString(temp->element));
+         ui->textBrowser_1->append(QString::number(temp->number));
+         ui->textBrowser_1->append("\n");
+         temp=temp->next;
+    }
+}
 
 void MainWindow::on_Display_clicked()
 {
     ui->textBrowser_1->clear();
     link<string> *temp=food.head->next;  //head.next是指向第一个元素
-
-    for(int i=0;i<food.cnt;i++)
-    {
-         ui->textBrowser_1->append(QString::fromStdString(temp->category));
-         //ui->textBrowser_1->append("   ");
-         ui->textBrowser_1->append(QString::fromStdString(temp->element));
-         //ui->textBrowser_1->append("   ");
-         ui->textBrowser_1->append(QString::number(temp->number));
-         ui->textBrowser_1->append("\n");
-         temp=temp->next;
-    }
-
+    display_f(temp,food);
     temp=vege.head->next;
-    for(int i=0;i<vege.cnt;i++)
-    {
-         ui->textBrowser_1->append(QString::fromStdString(temp->category));
-         //ui->textBrowser_1->append("   ");
-         ui->textBrowser_1->append(QString::fromStdString(temp->element));
-         //ui->textBrowser_1->append("   ");
-         ui->textBrowser_1->append(QString::number(temp->number));
-         ui->textBrowser_1->append("\n");
-         temp=temp->next;
-    }
+    display_f(temp,vege);
     temp=cloth.head->next;
-    for(int i=0;i<cloth.cnt;i++)
-    {
-         ui->textBrowser_1->append(QString::fromStdString(temp->category));
-         //ui->textBrowser_1->append("   ");
-         ui->textBrowser_1->append(QString::fromStdString(temp->element));
-         //ui->textBrowser_1->append("   ");
-         ui->textBrowser_1->append(QString::number(temp->number));
-         ui->textBrowser_1->append("\n");
-         temp=temp->next;
-    }
+    display_f(temp,cloth);
+    temp=cloth2.head->next;
+    display_f(temp,cloth2);
+    temp=cloth3.head->next;
+    display_f(temp,cloth3);
 
+}
+
+void MainWindow::display_co(linklist<string> &cloth1)
+{
+    cloth1.curr=cloth1.head->next;
+    QStringList item;
+    for(int i=0;i<cloth1.cnt;i++)
+    {
+        item<<QString::fromStdString(cloth1.curr->element);
+        cloth1.curr=cloth1.curr->next;
+    }
+    ui->comboBox_item->addItems(item);
 }
 
 
@@ -132,40 +105,29 @@ void MainWindow::on_comboBox_3_currentTextChanged(const QString &arg1)
     ui->comboBox_item->clear();
     if(arg1=="Food")
     {
-        food.curr=food.head->next;
-        QStringList item;
-        for(int i=0;i<food.cnt;i++)
-        {
-            item<<QString::fromStdString(food.curr->element);
-            food.curr=food.curr->next;
-        }
-        ui->comboBox_item->addItems(item);
+        display_co(food);
     }
 
 
     if(arg1=="Vegetable")
     {
-        vege.curr=vege.head->next;
-        QStringList item;
-        for(int i=0;i<vege.cnt;i++)
-        {
-            item<<QString::fromStdString(vege.curr->element);
-            vege.curr=vege.curr->next;
-        }
-        ui->comboBox_item->addItems(item);
+        display_co(vege);
     }
 
 
     if(arg1=="Cloth")
     {
-        cloth.curr=cloth.head->next;
-        QStringList item;
-        for(int i=0;i<cloth.cnt;i++)
-        {
-            item<<QString::fromStdString(cloth.curr->element);
-            cloth.curr=cloth.curr->next;
-        }
-        ui->comboBox_item->addItems(item);
+        display_co(cloth);
+    }
+
+    if(arg1=="CLoth2")
+    {
+        display_co(cloth2);
+    }
+
+    if(arg1=="Cloth3")
+    {
+        display_co(cloth3);
     }
 }
 
