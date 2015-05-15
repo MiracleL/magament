@@ -211,6 +211,16 @@
       <string>Cloth</string>
      </property>
     </item>
+    <item>
+     <property name="text">
+      <string>Cloth2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cloth3</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="label_8">
     <property name="geometry">

@@ -131,6 +131,40 @@ void MainWindow::on_comboBox_3_currentTextChanged(const QString &arg1)
     }
 }
 
+void MainWindow::ship_good(linklist<string> &cloth1,int &number,QString &item)
+{
+    QMessageBox msg1;
+    cloth1.curr=cloth1.head->next;
+    for(int i=0;i<cloth1.cnt;i++)
+    {
+        if(item.toStdString()==cloth1.curr->element)
+        {
+            if(number>cloth1.curr->number)
+            {
+                msg1.setText("The inventory is not enough");
+                msg1.exec();
+            }
+            else
+            {
+                cloth1.curr->number-=number;
+                link<string> *temp=new link<string>(cloth1.curr->element,number,cloth1.curr->category
+                                                    ,NULL);
+
+                good.enqueue(temp);
+
+
+                ui->textBrowser_1->clear();
+                ui->Display->click();
+                delete temp;
+
+            }
+            break;
+        }
+        cloth1.curr=cloth1.curr->next;
+    }
+
+}
+
 void MainWindow::on_buttonBox_accepted()
 {
     QMessageBox msg,msg1;
@@ -144,97 +178,25 @@ void MainWindow::on_buttonBox_accepted()
         QString item=ui->comboBox_item->currentText();
         if(ui->comboBox_3->currentText()=="Food")
         {
-            food.curr=food.head->next;
-            for(int i=0;i<food.cnt;i++)
-            {
-                if(item.toStdString()==food.curr->element)
-                {
-                    if(number>food.curr->number)
-                    {
-                        msg1.setText("The inventory is not enough");
-                        msg1.exec();
-                    }
-                    else
-                    {
-                        food.curr->number-=number;
-                        link<string> *temp=new link<string>(food.curr->element,number,food.curr->category
-                                                            ,NULL);
-
-                        good.enqueue(temp);
-
-
-                        ui->textBrowser_1->clear();
-                        ui->Display->click();
-                        delete temp;
-
-                    }
-                    break;
-                }
-                food.curr=food.curr->next;
-            }
+           ship_good(food,number,item);
         }
 
 
         else if(ui->comboBox_3->currentText()=="Vegetable")
         {
-            vege.curr=vege.head->next;
-            for(int i=0;i<vege.cnt;i++)
-            {
-                if(item.toStdString()==vege.curr->element)
-                {
-                    if(number>vege.curr->number)
-                    {
-                        msg1.setText("The inventory is not enough");
-                        msg1.exec();
-                    }
-                    else
-                    {
-                        vege.curr->number-=number;
-                        link<string> *temp=new link<string>(vege.curr->element,number,vege.curr->category
-                                                            ,NULL);
-                        good.enqueue(temp);
-
-                        ui->textBrowser_1->clear();
-                        ui->Display->click();
-                        delete temp;
-
-                    }
-                 break;
-                }
-                vege.curr=vege.curr->next;
-            }
+            ship_good(vege,number,item);
         }
-
-
         else if(ui->comboBox_3->currentText()=="Cloth")
         {
-            cloth.curr=cloth.head->next;
-            for(int i=0;i<cloth.cnt;i++)
-            {
-                if(item.toStdString()==cloth.curr->element)
-                {
-                    if(number>cloth.curr->number)
-                    {
-                        msg1.setText("The inventory is not enough");
-                        msg1.exec();
-                    }
-                    else
-                    {
-                        cloth.curr->number-=number;
-                        link<string> *temp=new link<string>(cloth.curr->element,number,cloth.curr->category
-                                                            ,NULL);
-                        good.enqueue(temp);
-
-                        ui->textBrowser_1->clear();
-                        ui->Display->click();
-                        delete temp;
-
-                    }
-                    break;
-                }
-                cloth.curr=cloth.curr->next;
-            }
-
+            ship_good(cloth,number,item);
+        }
+        else if(ui->comboBox_3->currentText()=="Cloth2")
+        {
+            ship_good(cloth2,number,item);
+        }
+        else if(ui->comboBox_3->currentText()=="Cloth3")
+        {
+            ship_good(cloth3,number,item);
         }
     }
 

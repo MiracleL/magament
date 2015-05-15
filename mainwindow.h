@@ -23,6 +23,8 @@ public:
 
 private slots:
 
+     void ship_good(linklist<string> &cloth1,int &number,QString &item);
+
     void display_f(link<string> *temp,linklist<string> &cloth2);
     void display_co(linklist<string> &cloth1);
 
