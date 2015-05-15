@@ -211,6 +211,16 @@
       <string>Cloth</string>
      </property>
     </item>
+    <item>
+     <property name="text">
+      <string>Cloth2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cloth3</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
@@ -350,10 +360,10 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="horizontalLayoutWidget_4">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>650</x>
       <y>50</y>
-      <width>301</width>
-      <height>73</height>
+      <width>321</width>
+      <height>31</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_4">

@@ -21,6 +21,7 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     link.h \
     linklist.h \
-    queue.h
+    queue.h \
+    hanshu.h
 
 FORMS    += mainwindow.ui
