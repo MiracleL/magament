@@ -1,6 +1,7 @@
 #ifndef HANSHU_H
 #define HANSHU_H
 
+
 #include"linklist.h"
 #include"queue.h"
 #include<QString>
@@ -24,6 +25,4 @@ void add_clicked(linklist<string> &cloth1,QString &s,QString &item
     if(i==cloth1.cnt)
     cloth1.append(item.toStdString(),number,s.toStdString());
 }
-
-
 #endif // HANSHU_H
