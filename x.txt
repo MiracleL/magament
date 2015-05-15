@@ -1,0 +1,14 @@
+ int i=0;
+        link<string> *temp=food.head->next;
+        for(i=0;i<food.cnt;i++)
+        {
+            if(item.toStdString()==temp->element)
+            {
+                temp->number+=number;
+                break;
+            }
+            temp=temp->next;
+        }
+        if(i==food.cnt)
+        food.append(item.toStdString(),number,s.toStdString());
+    }
